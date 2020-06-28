@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Alok's Blog</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <!-- Favicons -->
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+  </head>
+  <body>
+    
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">Alok Mishra</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link" href="https://twitter.com/AkMishra1717">Twitter</a>
+      <a class="nav-item nav-link" href="https://github.com/alokmishra17">GitHub</a>
+      <a class="nav-item nav-link" href="{% static 'sampleResume.pdf' %}">Resume</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
+    </div>
+  </div>
+</nav>
+  </header>
+  
+  <main role="main">
+
+  <div class="jumbotron p-4 p-md-5 text-dark rounded bg-blue">
+    <div class="col-md-4 px-0">
+      <h1 class="display-4 font-italic">Welcome to the Alok's Blog</h1>
+      <p class="display-6 font-italic">Here, you see all the latest stuff and articles that I posted</p>
+    </div>
+  </div>
+  <div class= "container text-center">
+  	<br>
+  	<h2 class="display-5 font-Bold">My Latest Posts</h2>
+  	<hr/>
+  </div>
+  
+  {% for blog in blogs.all %}	
+  <div class= "container ">
+  <div class="row mb-3">
+    <div class="col-md-10" >
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-2 shadow-sm h-md-200 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+
+     
+          <a href= "{% url 'detail' blog.id %}"> <h3 class="mb-0">{{blog.title}}</h3></a>
+          <div class="mb-1 text-muted">{{blog.pub_date_formatted}}</div>
+          <p class="card-text mb-auto">{{blog.summary}}</p>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+      
+          <img  class="img-fluid" width="450" height="450" src="{{blog.image.url}}"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+         </img>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+</main>
+<div> <br>
+</div>
+<footer class="text-muted">
+	<div class="container text-center">
+	  <h6><p>© Alok Mishra {% now "Y" %}</p></h6>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
