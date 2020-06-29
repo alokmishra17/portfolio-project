@@ -14,6 +14,14 @@ import os
 import django_heroku
 
 
+
+#AWS authentication
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+#AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9_yh&#^=7n-3b2f=r2_dl+f65o)-m-znxiy18&-406xr=v8cfu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 #DEBUG = TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -43,6 +51,7 @@ INSTALLED_APPS = [
     #own apps
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
+    'storages',
 
 ]
 
@@ -138,5 +147,12 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+#settings regarding AWS S3
+
+if not DEBUG:
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 django_heroku.settings(locals())
