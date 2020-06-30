@@ -27,7 +27,7 @@ SECRET_KEY = '9_yh&#^=7n-3b2f=r2_dl+f65o)-m-znxiy18&-406xr=v8cfu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#DEBUG = TEMPLATE_DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -148,6 +148,7 @@ USE_S3 = os.getenv('USE_S3') == 'TRUE'
 
 if USE_S3:
     # aws settings
+    DEBUG=False
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
